@@ -38,7 +38,7 @@ jobs:
 
       # 5️⃣ Upload the executable as artifact
       - name: Upload TranscriptionApp.exe
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: TranscriptionApp
           path: dist/TranscriptionApp.exe
