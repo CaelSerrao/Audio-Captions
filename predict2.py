@@ -100,8 +100,3 @@ def mux_subtitles(video_path, srt_path):
     if os.path.exists(srt_path):
         os.remove(srt_path)
     return output_path
-
-
-if __name__ == "__main__":
-    import sys
-    generate_srt(sys.argv[1])

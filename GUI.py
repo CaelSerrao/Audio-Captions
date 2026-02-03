@@ -5,9 +5,17 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, Signal, QObject, QThread
 from predict2 import generate_srt, mux_subtitles
 from final_step import audio_to_video_with_subs
-import os
+import os, sys
 import shutil
 import subprocess
+import os, sys
+
+if getattr(sys, 'frozen', False):
+    base_path = sys._MEIPASS
+else:
+    base_path = os.path.dirname(__file__)
+
+icon_path = os.path.join(base_path, "static", "audio_icon.jpg")
 
 VIDEO_EXTS = {".mp4", ".mov", ".mkv", ".avi", ".m4a", ".wav"}
 
@@ -31,7 +39,7 @@ class Worker(QObject):
         if self.path.lower().endswith((".mp4", ".mov", ".mkv", ".avi")):
             new_video = mux_subtitles(self.path, srt_path)
         else:
-            new_video = audio_to_video_with_subs("static/audio_icon.jpg", self.path, srt_path)
+            new_video = audio_to_video_with_subs(icon_path, self.path, srt_path)
 
         self.progress.emit(100)
         self.message.emit("Done!")
@@ -111,11 +119,9 @@ class App(QWidget):
 
         self.drop = DropArea()
 
-        # ⭐ progress bar
         self.progress = QProgressBar()
         self.progress.setValue(0)
 
-        # ⭐ open button
 
         layout.addWidget(label)
         layout.addWidget(self.drop)
@@ -132,7 +138,7 @@ class App(QWidget):
 
 
     def open_file(self):
-        subprocess.run(["open", self.output_path])  # macOS
+        subprocess.run(["open", self.output_path]) 
     from PySide6.QtWidgets import QFileDialog
 
     def save_video(self, video_path):

@@ -1,5 +1,9 @@
-import os
+import os,sys
 import subprocess
+if getattr(sys, 'frozen', False):
+    base_path = sys._MEIPASS
+else:
+    base_path = os.path.dirname(__file__)
 def audio_to_video_with_subs(image_path, audio_path, srt_path):
     output = os.path.splitext(audio_path)[0] + "_video.mp4"
 
