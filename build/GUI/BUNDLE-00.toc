@@ -1,1 +1,0 @@
-([('GUI', '/Users/mariaserrao/transcription/dist/GUI', 'EXECUTABLE')],)
