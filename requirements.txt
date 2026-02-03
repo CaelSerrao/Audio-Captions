@@ -1,1 +1,1 @@
-pip install soundfile faster-whisper numpy PySide6
+pip install faster-whisper numpy PySide6
