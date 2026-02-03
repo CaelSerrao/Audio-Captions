@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+
+# Mac
+.DS_Store
+
+# Logs
+*.log
+
+# Large datasets / generated files
+data/
+outputs/
+checkpoints/
